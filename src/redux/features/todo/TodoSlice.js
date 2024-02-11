@@ -14,7 +14,7 @@ const initialState = {
 // step 3 make a Slice
 
 export const todoSlice = createSlice({
-	name: todo, // this name will be used in chromedevTool
+	name: 'todo', // this name will be used in chromedevTool
 	initialState,
 	reducers: {
 		// the reducers object takes properties and values and that is actually functions like
