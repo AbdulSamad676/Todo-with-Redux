@@ -1,48 +1,47 @@
+// TodoSlice.js
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-// step 2
 const initialState = {
 	todos: [
 		{
-			id: 1,
-			title: 'Hello',
+			id: nanoid(),
+			title: 'Learn Code',
 		},
-		{},
 	],
 };
 
-// step 3 make a Slice
-
 export const todoSlice = createSlice({
-	name: 'todo', // this name will be used in chromedevTool
+	name: 'todo',
 	initialState,
 	reducers: {
-		// the reducers object takes properties and values and that is actually functions like
-
-		// Note That
-		// state gives initalState access
-		// The action gives the access of the individual data that is received like action.payload.id or
-		// action.payload.text etc  payload 1 object hai kuch b ly sakta hai
-
 		addTodo: (state, action) => {
 			const todo = {
 				id: nanoid(),
-				title: action.payload.title,
+				title: action.payload,
 			};
 			state.todos.push(todo);
 		},
 		removeTodo: (state, action) => {
+			console.log('remove called');
 			state.todos = state.todos.filter(
-				todo => todo.id !== action.payload.id
+				todo => todo.id !== action.payload
 			);
 		},
-		updateTodo: (state, action) => {},
+
+		//
+		// removeTodo: (state, action) => {
+		// 	console.log('remove called');
+		// 	state.todos = state.todos.filter(
+		// 		todo => todo.id !== action.payload
+		// 	);
+		// },
+		//
+		updateTodo: (state, action) => {
+			// Add logic to update a todo if needed
+		},
 	},
 });
 
-// step 4
-//Now export individual functionality like
 export const { addTodo, removeTodo, updateTodo } = todoSlice.actions;
 
-// step 5 export the reducers globally
 export default todoSlice.reducer;
