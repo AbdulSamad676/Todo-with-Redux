@@ -38,6 +38,15 @@ export const todoSlice = createSlice({
 		//
 		updateTodo: (state, action) => {
 			// Add logic to update a todo if needed
+			const { editId, updateInput } = action.payload;
+			console.log(
+				`Update action id: ${editId} and title: ${updateInput}`
+			);
+
+			const index = state.todos?.findIndex(todo => todo.id === editId);
+			console.log(`index found: ${index}`);
+			state.todos[index] = { ...state.todos[index], title: updateInput };
+			console.log('Updated Successfully');
 		},
 	},
 });

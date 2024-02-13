@@ -1,17 +1,26 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeTodo } from '../redux/features/todo/TodoSlice';
+import { removeTodo, updateTodo } from '../redux/features/todo/TodoSlice';
 
 function Todos() {
 	const todos = useSelector(state => state.todos);
 	const dispatch = useDispatch();
 	const [updateInput, setUpdateInput] = useState('');
+	const [editId, setEditId] = useState('');
 	const [modal, setModal] = useState(false);
-	const updateHandler = e => {
+
+	const updateHandler = ({ id, title }) => {
 		setModal(true);
-		console.log(`updated `);
+		setUpdateInput(title);
+		setEditId(id);
+		console.log(`todo id: ${id} <br/> updated  with the text ${title}`);
 	};
-	const updateFormHandler = e => {};
+	const updateFormHandler = e => {
+		e.preventDefault();
+		// console.log(`in updateFrom ${updateInput} and id: ${editId}`);
+		dispatch(updateTodo({ editId, updateInput }));
+		setModal(false);
+	};
 	return (
 		<>
 			<div>Todos</div>
@@ -26,7 +35,7 @@ function Todos() {
 							<button
 								className='text-white bg-green-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md'
 								onClick={() => {
-									updateHandler();
+									updateHandler(todo);
 								}}
 							>
 								Edit
