@@ -22,12 +22,21 @@ function Todos() {
 		setModal(false);
 	};
 	return (
-		<>
-			<div>Todos</div>
+		<div className='w-9/12  mx-auto'>
+			{todos.length > 0 ? (
+				<div className='text-center text-2xl bg-black w-max mx-auto py-2 px-5  rounded-md my-2 text-white font-bold'>
+					Your Todos
+				</div>
+			) : (
+				<div className='text-center text-2xl bg-black w-max mx-auto py-2 px-5  rounded-md my-2 text-white font-bold'>
+					No Todo Here
+				</div>
+			)}
+
 			<ul className='list-none'>
 				{todos.map(todo => (
 					<li
-						className='mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded'
+						className=' flex justify-between items-center bg-zinc-800 px-4 py-2 rounded'
 						key={todo.id}
 					>
 						<div className='text-white'>{todo.title}</div>
@@ -99,7 +108,7 @@ function Todos() {
 					</div>
 				</form>
 			</div>
-		</>
+		</div>
 	);
 }
 
