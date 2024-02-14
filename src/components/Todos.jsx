@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeTodo, updateTodo } from '../redux/features/todo/TodoSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+	faPenToSquare,
+	faTrashCan,
+	faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 
 function Todos() {
 	const todos = useSelector(state => state.todos);
@@ -74,14 +78,14 @@ function Todos() {
 						'text-white mt-2 absolute top-3 right-3 w-auto bg-red-500 border-0 py-2 px-3 focus:outline-none hover:bg-indigo-600 rounded font-bold text-lg'
 					}
 				>
-					X
+					<FontAwesomeIcon icon={faXmark} />
 				</button>
 				<form onSubmit={updateFormHandler} className=' space-x-3 mt-5 '>
 					<div className=''>
 						<input
 							type='text'
 							className='w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-							placeholder='Enter a Todo...'
+							placeholder='Upate Todo...'
 							value={updateInput}
 							onChange={e => setUpdateInput(e.target.value)}
 						/>
