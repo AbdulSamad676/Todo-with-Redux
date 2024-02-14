@@ -42,7 +42,7 @@ function Todos() {
 			<ul className='list-none'>
 				{todos.map(todo => (
 					<li
-						className=' flex justify-between items-center bg-zinc-800 px-4 py-2 rounded'
+						className=' flex justify-between items-center bg-zinc-800 px-4 py-2 my-1 rounded'
 						key={todo.id}
 					>
 						<div className='text-white'>{todo.title}</div>
